@@ -1,5 +1,4 @@
 const form = document.getElementById("giftForm")
-const giftsContainer = document.getElementById("gifts");
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -16,18 +15,5 @@ form.addEventListener("submit", async (event) => {
     });
 
     form.reset();
-    await loadGifts(); 
-
+    await alert("Gift submitted successfully!");
 });
-
-async function loadGifts() {
-    const response = await fetch('/gifts');
-    const gifts = await response.json();
-    
-    giftsContainer.innerHTML = '';
-    gifts.forEach(gift => {
-        const item = document.createElement("p");
-        item.textContent = `Gift for ${gift.name}: ${gift.gift}`;
-        giftsContainer.appendChild(item);
-    });
-}

@@ -28,10 +28,19 @@ cursor.execute('''
 conn.commit()
 conn.close()
 
+@app.errorhandler(404)
+def not_found(e):
+    return flask.send_from_directory("static", "404.html")
+
 @app.get("/")
 @limiter.exempt
 def index():
     return flask.send_from_directory("static", "index.html")
+
+@app.get("/dashboard")
+@limiter.exempt
+def dashboard():
+    return flask.send_from_directory("static", "dashboard.html")
 
 @app.post("/gifts")
 @limiter.limit("50 per day")
