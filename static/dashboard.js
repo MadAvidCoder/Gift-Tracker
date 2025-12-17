@@ -7,7 +7,14 @@ async function loadGifts() {
     giftsContainer.innerHTML = '';
     gifts.forEach(gift => {
         const item = document.createElement("tr");
-        item.innerHTML = `<td class="table-body">${gift.name}</td><td class="table-body">${gift.gift}</td>`;
+        const nameCell = document.createElement('td');
+        nameCell.className = 'table-body';
+        nameCell.textContent = gift.name;
+        const giftCell = document.createElement('td');
+        giftCell.className = 'table-body';
+        giftCell.textContent = gift.gift;
+        item.appendChild(nameCell);
+        item.appendChild(giftCell);
         giftsContainer.appendChild(item);
     });
 }
